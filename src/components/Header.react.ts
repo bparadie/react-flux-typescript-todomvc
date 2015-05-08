@@ -44,19 +44,19 @@ class Header extends ReactComponent<HeaderProps,any> {
    * @return {object}
    */
   public render(): React.ReactElement<HeaderElement> {
-    return (
-      ReactJSX<HeaderElement>(this, `<header id="header">
-        <h1>todos</h1>
-        <TodoTextInput
-          id="new-todo"
-          placeholder="What needs to be done?"
-          onSave={this._onSave}
-        />
-      </header>`,
+    return ReactJSX<HeaderElement>(`
+        <header id="header">
+          <h1>todos</h1>
+          <TodoTextInput
+            id="new-todo"
+            placeholder="What needs to be done?"
+            onSave={this._onSave}
+          />
+        </header>`,
+      this,
       {
         'TodoTextInput': TodoTextInput
-      })
-    );
+      });
   }
 
 };

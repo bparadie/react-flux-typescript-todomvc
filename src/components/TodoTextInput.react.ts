@@ -93,7 +93,7 @@ class TodoTextInput extends ReactComponent<any,TodoTextInputState> {
    */
   public render(): React.ReactElement<TodoTextInputElement> {
     // this.state = this.state || this.getInitialState();
-    return (ReactJSX<TodoTextInputElement>(this, `
+    return ReactJSX<TodoTextInputElement>(`
       <input
         className={this.props.className}
         id={this.props.id}
@@ -104,7 +104,8 @@ class TodoTextInput extends ReactComponent<any,TodoTextInputState> {
         value={this.state.value}
         autoFocus={true}
       />
-    `));
+    `,
+    this);
   }
 
 };

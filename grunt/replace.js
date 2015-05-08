@@ -11,6 +11,9 @@ module.exports =  function (grunt) {
     var replace = function (matchedWord, index, fullText, regexMatches) {
       var jsx = regexMatches && regexMatches[0];
       var reactCode;
+
+      // console.log("replace:" + matchedWord + " => " + regexMatches);
+
       if( jsx )
       {
         try {
@@ -28,6 +31,16 @@ module.exports =  function (grunt) {
             src: ['<%= config.build %>/src/**/*.ts'],
             overwrite: true,
             replacements: [
+                // using template strings and ReactJSX.
+                {
+                    // from: /ReactJSX<.*>\(`([^`\\]*(\\.[^`\\]*)*)`.*\)/gm,
+                    // from: /ReactJSX<.*\(`([^`\\]*(\\.[^`\\]*)*)`,([^`\\]*(\\.*\))*\))\)/gm,
+                    // from: /ReactJSX<.*\(`([^`\\]*(\\.[^`\\]*)*)`([^`\\]*(\\.[^`\\]*)*)\)/gm,
+                    // from: /ReactJSX<.*\(`([^`\\]*(\\.[^`\\]*)*)`([^`\\\)]*(\\.[^`\\\)]*)*)\)/gm,
+                    // from: /ReactJSX.*\(`([^`\\]*(\\.[^`\\]*)*)`([^`\\\)]*(\\.[^`\\\)]*)*)\)/gm,
+                    from: /ReactJSX.*`([^`\\]*(\\.[^`\\]*)*)`([^`\\\)]*(\\.[^`\\\)]*)*)\)/gm,
+                    to: replace
+                },
                 // using template strings
                 {
                     from: /React\.jsx\(`([^`\\]*(\\.[^`\\]*)*)`\)/gm,

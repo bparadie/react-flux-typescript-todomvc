@@ -15,8 +15,8 @@ import ReactJSX = require('./react/ReactJSX');
 import TodoApp = require('./components/TodoApp.react');
 
 React.render(
-  ReactJSX(this, `<TodoApp />`,{
-    TodoApp: TodoApp
+  ReactJSX(`<TodoApp />`, this, {
+    'TodoApp': TodoApp
   }),
   document.getElementById('todoapp')
 );

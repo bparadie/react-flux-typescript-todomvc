@@ -6,7 +6,18 @@ module.exports = function (grunt) {
       'tslint:all'
   ]);
 
-  grunt.registerTask('build', [
+  grunt.registerTask('debug', [
+    'tsd',
+    'clean',
+    'copy:tsx',
+    'copy:typings',
+    // 'tslint:all',
+    'ts:app',
+    'browserify:dist',
+    // 'jshint:all',
+  ]);
+
+  grunt.registerTask('release', [
     'tsd',
     'clean',
     'copy:tsx',
@@ -27,5 +38,5 @@ module.exports = function (grunt) {
       'connect:public:keepalive'
   ]);
 
-  grunt.registerTask('default', ['build']);
+  grunt.registerTask('default', ['release']);
 };

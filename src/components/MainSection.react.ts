@@ -58,8 +58,8 @@ class MainSection extends ReactComponent<TodoState,any> {
       if( allTodos.hasOwnProperty(key) )
       {
         todos.push(
-          ReactJSX<TodoItemProps>(this,
-          `<TodoItem key={key} todo={allTodos[key]} />`,
+          ReactJSX<TodoItemProps>(`<TodoItem key={key} todo={allTodos[key]} />`,
+          this,
           {
             TodoItem: TodoItem,
             allTodos: allTodos,
@@ -69,8 +69,8 @@ class MainSection extends ReactComponent<TodoState,any> {
       }
     }
 
-    return (
-      ReactJSX<MainSectionElement>(this, `<section id="main">
+    return ReactJSX<MainSectionElement>(`
+        <section id="main">
         <input
           id="toggle-all"
           type="checkbox"
@@ -79,10 +79,11 @@ class MainSection extends ReactComponent<TodoState,any> {
         />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul id="todo-list">{todos}</ul>
-      </section>`, {
+      </section>`,
+      this,
+      {
         'todos': todos
-      })
-    );
+      });
   }
 
 

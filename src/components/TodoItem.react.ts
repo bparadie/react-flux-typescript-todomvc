@@ -74,12 +74,13 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
 
     var input: React.ReactElement<TodoTextInputElement>;
     if (this.state.isEditing) {
-      input = ReactJSX<TodoTextInputElement>(this, `
+      input = ReactJSX<TodoTextInputElement>(`
         <TodoTextInput
           className="edit"
           onSave={this._onSave}
           value={todo.text}
         />`,
+        this,
         {
           TodoTextInput: TodoTextInput,
           todo: todo
@@ -91,7 +92,7 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
     // Note that 'completed' is a classification while 'complete' is a state.
     // This differentiation between classification and state becomes important
     // in the naming of view actions toggleComplete() vs. destroyCompleted().
-    return (ReactJSX<TodoItemElement>(this, `
+    return ReactJSX<TodoItemElement>(`
       <li
         className={cx({
           'completed': todo.complete,
@@ -112,11 +113,13 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
         </div>
         {input}
       </li>
-    `, {
+    `,
+    this,
+    {
       'todo': todo,
       'cx': cx,
       'input': input
-    }));
+    });
   }
 
 

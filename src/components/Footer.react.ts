@@ -79,18 +79,18 @@ class Footer extends ReactComponent<FooterProps,any> {
     // Undefined and thus not rendered if no completed items are left.
     if (completed) {
       clearCompletedButton =
-          ReactJSX<ClearCompletedButton>(this, `<button
+          ReactJSX<ClearCompletedButton>(`<button
           id="clear-completed"
           onClick={this._onClearCompletedClick}>
           Clear completed ({completed})
         </button>`,
+        this,
         {
           completed: completed
         });
     }
 
-    return (
-      ReactJSX<FooterElement>(this, `<footer id="footer">
+    return ReactJSX<FooterElement>(`<footer id="footer">
         <span id="todo-count">
           <strong>
             {itemsLeft}
@@ -99,12 +99,12 @@ class Footer extends ReactComponent<FooterProps,any> {
         </span>
         {clearCompletedButton}
       </footer>`,
+      this,
       {
         'itemsLeft': itemsLeft,
         'itemsLeftPhrase': itemsLeftPhrase,
         'clearCompletedButton': clearCompletedButton
-      })
-    );
+      });
   }
 }
 

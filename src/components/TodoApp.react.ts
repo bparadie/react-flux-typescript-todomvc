@@ -71,7 +71,7 @@ class TodoApp extends ReactComponent<TodoAppProps,TodoState> {
   public render(): React.ReactElement<TodoAppElement> {
     // this.state = this.state || this.getInitialState();
 
-  	return (ReactJSX<TodoAppElement>(this, `
+  	return ReactJSX<TodoAppElement>(`
       <div>
         <Header />
         <MainSection
@@ -81,11 +81,12 @@ class TodoApp extends ReactComponent<TodoAppProps,TodoState> {
         <Footer allTodos={this.state.allTodos} />
       </div>
   	`,
+    this,
     {
       'Header': Header,
       'MainSection': MainSection,
       'Footer': Footer
-    }));
+    });
   }
 };
 
