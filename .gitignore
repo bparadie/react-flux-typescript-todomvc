@@ -1,0 +1,8 @@
+build/
+public/
+node_modules/
+/typings/*
+/src/.baseDir.ts
+!/typings/tsd.d.ts
+!/typings/todomvc/todomvc.d.ts
+npm-debug.log
