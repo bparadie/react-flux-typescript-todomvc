@@ -14,6 +14,7 @@ var ReactPropTypes: React.ReactPropTypes = React.PropTypes;
 import TodoActions = require('../actions/TodoActions');
 import TodoItem = require('./TodoItem.react');
 import ReactComponent = require('../react/ReactComponent');
+import ReactJSX = require('../react/ReactJSX');
 
 interface MainSectionElement
 {
@@ -39,7 +40,7 @@ class MainSection extends ReactComponent<TodoState,any> {
   /**
    * @return {object}
    */
-  public render(): React.DOMElement<MainSectionElement>  {
+  public render(): React.ReactElement<MainSectionElement>  {
     var key: string;
     var todos: React.ReactElement<TodoItemProps>[];
     var allTodos: MapStringTo<TodoData>;
@@ -56,12 +57,20 @@ class MainSection extends ReactComponent<TodoState,any> {
     for (key in allTodos) {
       if( allTodos.hasOwnProperty(key) )
       {
-        todos.push(React.jsx(`<TodoItem key={key} todo={allTodos[key]} />`));
+        todos.push(
+          ReactJSX<TodoItemProps>(this,
+          `<TodoItem key={key} todo={allTodos[key]} />`,
+          {
+            TodoItem: TodoItem,
+            allTodos: allTodos,
+            key: key
+          })
+        );
       }
     }
 
     return (
-        React.jsx(`<section id="main">
+      ReactJSX<MainSectionElement>(this, `<section id="main">
         <input
           id="toggle-all"
           type="checkbox"
@@ -70,7 +79,9 @@ class MainSection extends ReactComponent<TodoState,any> {
         />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul id="todo-list">{todos}</ul>
-      </section>`)
+      </section>`, {
+        'todos': todos
+      })
     );
   }
 

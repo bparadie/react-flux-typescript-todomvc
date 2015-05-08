@@ -20,6 +20,7 @@ import MainSection = require('./MainSection.react');
 import React = require('react/addons');
 import TodoStore = require('../stores/TodoStore');
 import ReactComponent = require('../react/ReactComponent');
+import ReactJSX = require('../react/ReactJSX');
 
 interface TodoAppProps
 {
@@ -67,10 +68,10 @@ class TodoApp extends ReactComponent<TodoAppProps,TodoState> {
   /**
    * @return {object}
    */
-  public render(): React.DOMElement<TodoAppElement> {
+  public render(): React.ReactElement<TodoAppElement> {
     // this.state = this.state || this.getInitialState();
 
-  	return (React.jsx(`
+  	return (ReactJSX<TodoAppElement>(this, `
       <div>
         <Header />
         <MainSection
@@ -79,7 +80,12 @@ class TodoApp extends ReactComponent<TodoAppProps,TodoState> {
         />
         <Footer allTodos={this.state.allTodos} />
       </div>
-  	`));
+  	`,
+    {
+      'Header': Header,
+      'MainSection': MainSection,
+      'Footer': Footer
+    }));
   }
 };
 

@@ -26,13 +26,13 @@
     "grunt-text-replace": "0.4.0",
     "grunt-ts": "3.0.0",
     "grunt-tsd": "0.1.0",
-    "grunt-tslint": "2.0.0",
+    "grunt-tslint": "2.2.0-beta",
     "load-grunt-config": "0.17.1",
     "object-assign": "2.0.0",
     "react-tools": "0.13.2",
-    "time-grunt": "1.1.1",
-    "tslint": "2.1.1",
-    "typescript": "1.4.1"
+    "time-grunt": "1.2.0",
+    "tslint": "2.2.0-beta",
+    "typescript": "1.5.0-beta"
   },
   "dependencies": {
     "react": "0.13.2"

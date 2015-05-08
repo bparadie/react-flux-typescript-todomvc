@@ -13,6 +13,7 @@ import React = require('react/addons');
 import TodoActions = require('../actions/TodoActions');
 import TodoTextInput = require('./TodoTextInput.react');
 import ReactComponent = require('../react/ReactComponent');
+import ReactJSX = require('../react/ReactJSX');
 
 interface HeaderProps
 {
@@ -42,16 +43,19 @@ class Header extends ReactComponent<HeaderProps,any> {
   /**
    * @return {object}
    */
-  public render(): React.DOMElement<HeaderElement> {
+  public render(): React.ReactElement<HeaderElement> {
     return (
-        React.jsx(`<header id="header">
+      ReactJSX<HeaderElement>(this, `<header id="header">
         <h1>todos</h1>
         <TodoTextInput
           id="new-todo"
           placeholder="What needs to be done?"
           onSave={this._onSave}
         />
-      </header>`)
+      </header>`,
+      {
+        'TodoTextInput': TodoTextInput
+      })
     );
   }
 

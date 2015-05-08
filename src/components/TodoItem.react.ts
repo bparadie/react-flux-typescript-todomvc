@@ -14,6 +14,7 @@ var ReactPropTypes = React.PropTypes;
 import TodoActions = require('../actions/TodoActions');
 import TodoTextInput = require('./TodoTextInput.react');
 import ReactComponent = require('../react/ReactComponent');
+import ReactJSX = require('../react/ReactJSX');
 
 import cx = require('react/lib/cx');
 
@@ -67,18 +68,22 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
   /**
    * @return {object}
    */
-  public render(): React.DOMElement<TodoItemElement> {
+  public render(): React.ReactElement<TodoItemElement> {
     var todo = this.props.todo;
     // this.state = this.state || this.getInitialState();
 
     var input: React.ReactElement<TodoTextInputElement>;
     if (this.state.isEditing) {
-      input = React.jsx(`
+      input = ReactJSX<TodoTextInputElement>(this, `
         <TodoTextInput
           className="edit"
           onSave={this._onSave}
           value={todo.text}
-        />`);
+        />`,
+        {
+          TodoTextInput: TodoTextInput,
+          todo: todo
+        });
     }
 
     // List items should get the class 'editing' when editing
@@ -86,7 +91,7 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
     // Note that 'completed' is a classification while 'complete' is a state.
     // This differentiation between classification and state becomes important
     // in the naming of view actions toggleComplete() vs. destroyCompleted().
-    return (React.jsx(`
+    return (ReactJSX<TodoItemElement>(this, `
       <li
         className={cx({
           'completed': todo.complete,
@@ -107,7 +112,11 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
         </div>
         {input}
       </li>
-    `));
+    `, {
+      'todo': todo,
+      'cx': cx,
+      'input': input
+    }));
   }
 
 

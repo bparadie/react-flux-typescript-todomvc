@@ -12,6 +12,7 @@
 import React = require('react/addons');
 var ReactPropTypes = React.PropTypes;
 import ReactComponent = require('../react/ReactComponent');
+import ReactJSX = require('../react/ReactJSX');
 
 var ENTER_KEY_CODE = 13;
 
@@ -90,9 +91,9 @@ class TodoTextInput extends ReactComponent<any,TodoTextInputState> {
   /**
    * @return {object}
    */
-  public render(): React.DOMElement<TodoTextInputElement> {
+  public render(): React.ReactElement<TodoTextInputElement> {
     // this.state = this.state || this.getInitialState();
-    return (React.jsx(`
+    return (ReactJSX<TodoTextInputElement>(this, `
       <input
         className={this.props.className}
         id={this.props.id}

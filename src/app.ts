@@ -10,10 +10,13 @@
 ///<reference path="../typings/tsd.d.ts"/>
 
 import React = require('react');
+import ReactJSX = require('./react/ReactJSX');
 
 import TodoApp = require('./components/TodoApp.react');
 
 React.render(
-  React.jsx(`<TodoApp />`),
+  ReactJSX(this, `<TodoApp />`,{
+    TodoApp: TodoApp
+  }),
   document.getElementById('todoapp')
 );

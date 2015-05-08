@@ -13,6 +13,7 @@
 
 import React = require('react/addons');
 import ReactComponent = require('../react/ReactComponent');
+import ReactJSX = require('../react/ReactJSX');
 
 
 var ReactPropTypes: React.ReactPropTypes = React.PropTypes;
@@ -51,7 +52,7 @@ class Footer extends ReactComponent<FooterProps,any> {
   /**
    * @return {object}
    */
-  public render(): React.DOMElement<FooterElement> {
+  public render(): React.ReactElement<FooterElement> {
 
     var allTodos: MapStringTo<TodoData> = this.props.allTodos;
     var total: number = Object.keys(allTodos).length;
@@ -59,7 +60,7 @@ class Footer extends ReactComponent<FooterProps,any> {
     var key: string;
     var itemsLeft: number;
     var itemsLeftPhrase: string;
-    var clearCompletedButton:  React.DOMElement<ClearCompletedButton>;
+    var clearCompletedButton:  React.ReactElement<ClearCompletedButton>;
 
     if (total === 0) {
       return null;
@@ -78,15 +79,18 @@ class Footer extends ReactComponent<FooterProps,any> {
     // Undefined and thus not rendered if no completed items are left.
     if (completed) {
       clearCompletedButton =
-          React.jsx(`<button
+          ReactJSX<ClearCompletedButton>(this, `<button
           id="clear-completed"
           onClick={this._onClearCompletedClick}>
           Clear completed ({completed})
-        </button>`);
+        </button>`,
+        {
+          completed: completed
+        });
     }
 
     return (
-        React.jsx(`<footer id="footer">
+      ReactJSX<FooterElement>(this, `<footer id="footer">
         <span id="todo-count">
           <strong>
             {itemsLeft}
@@ -94,7 +98,12 @@ class Footer extends ReactComponent<FooterProps,any> {
           {itemsLeftPhrase}
         </span>
         {clearCompletedButton}
-      </footer>`)
+      </footer>`,
+      {
+        'itemsLeft': itemsLeft,
+        'itemsLeftPhrase': itemsLeftPhrase,
+        'clearCompletedButton': clearCompletedButton
+      })
     );
   }
 }

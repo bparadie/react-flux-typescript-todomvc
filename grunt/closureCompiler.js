@@ -29,8 +29,9 @@ module.exports =  function (grunt) {
                 // define: ["'require=undefined'"],
                 // warning_level: 'verbose',
                 jscomp_off: ['checkTypes', 'fileoverviewTags'],
-                summary_detail_level: 3
+                summary_detail_level: 3,
                 // output_wrapper: '"(function(){%output%}).call(this);"'
+                language_in: 'ECMASCRIPT5_STRICT'
             },
             // [OPTIONAL] Set exec method options
             execOpts: {

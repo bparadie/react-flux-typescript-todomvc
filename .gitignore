@@ -5,4 +5,6 @@ node_modules/
 /src/.baseDir.ts
 !/typings/tsd.d.ts
 !/typings/todomvc/todomvc.d.ts
+!/typings/react-jsx/react-jsx.d.ts
+!/typings/react-tools/react-tools.d.ts
 npm-debug.log
