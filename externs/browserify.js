@@ -7,3 +7,10 @@
  * @param {*=}u
  */
 function require(o,u){}
+
+
+/**
+ * @param {*=}o
+ * @param {*=}u
+ */
+function define(o,u){}

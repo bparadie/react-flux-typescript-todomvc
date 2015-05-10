@@ -6,7 +6,8 @@
         "declaration": false,
         "noImplicitAny": true,
         "removeComments": false,
-        "noLib": false
+        "noLib": false,
+        "outDir": "./build/js/"
     },
     "filesGlob": [
         "./build/**/*.ts",
