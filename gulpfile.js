@@ -1,6 +1,3 @@
-
-
-
 var require = require || null;
 var console = console || null;
 
@@ -16,6 +13,7 @@ var concat = require('gulp-concat');
 var tsd = require('gulp-tsd');
 var closureCompiler = require('gulp-closure-compiler');
 var runSequence = require('run-sequence');
+var tslint = require('gulp-tslint');
 
 var config = {
   build: 'build',
@@ -172,6 +170,104 @@ gulp.task('minify', function() {
             .pipe(closureCompiler(options))
             .pipe(log())
             .pipe(gulp.dest(config.public + '/js/'));
+});
+
+gulp.task('tslint', function(){
+
+  var options = {
+    configuration: {
+      "rules": {
+        "ban": [true,
+            ["_", "extend"],
+            ["_", "isNull"],
+            ["_", "isDefined"]
+        ],
+        "class-name": true,
+        "comment-format": [false,
+            "check-space",
+            "check-lowercase"
+        ],
+        "curly": true,
+        "eofline": true,
+        "forin": true,
+        "indent": [true, 4],
+        "interface-name": false,
+        "jsdoc-format": false,
+        "label-position": true,
+        "label-undefined": true,
+        "max-line-length": [true, 140],
+        "member-ordering": [true,
+            "public-before-private",
+            "static-before-instance",
+            "variables-before-functions"
+        ],
+        "no-arg": true,
+        "no-bitwise": false,
+        "no-console": [true,
+            "debug",
+            "info-false",
+            "time",
+            "timeEnd",
+            "trace"
+        ],
+        "no-construct": true,
+        "no-constructor-vars": true,
+        "no-debugger": true,
+        "no-duplicate-key": true,
+        "no-duplicate-variable": true,
+        "no-empty": false,
+        "no-eval": true,
+        "no-string-literal": true,
+        "no-switch-case-fall-through": true,
+        "no-trailing-comma": true,
+        "no-trailing-whitespace": true,
+        "no-unused-expression": false,
+        "no-unused-variable": true,
+        "no-unreachable": true,
+        "no-use-before-declare": true,
+        "no-var-requires": false,
+        "one-line": [false,
+            "check-open-brace",
+            "check-catch",
+            "check-else",
+            "check-whitespace"
+        ],
+        "quotemark": [false, "double"],
+        "radix": true,
+        "semicolon": true,
+        "triple-equals": [false, "allow-null-check"],
+        "typedef": [true,
+            "callSignature",
+            "indexSignature",
+            "parameter",
+            "propertySignature",
+            "variableDeclarator"
+        ],
+        "typedef-whitespace": [true,
+            ["callSignature", "noSpace"],
+            ["catchClause", "noSpace"],
+            ["indexSignature", "space"]
+        ],
+        "use-strict": [false,
+            "check-module",
+            "check-function"
+        ],
+        "variable-name": false,
+        "whitespace": [false,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+        ]
+      }
+    }
+  };
+
+  gulp.src('./src/**/*.ts')
+    .pipe(tslint(options))
+    .pipe(tslint.report('prose'))
+    .pipe(log());
 });
 
 gulp.task('debug', function(callback) {
