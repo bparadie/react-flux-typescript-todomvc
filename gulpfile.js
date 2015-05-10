@@ -20,10 +20,8 @@ var config = {
   public: 'public',
   js_generated: 'build/js',
   ts_typings: './typings/**',
-  ts_sources: [
-    './src/**/*.ts',
-    './typings/**/*.ts'
-  ]
+  ts_sources: './src/**/*.ts',
+  ts_jsx: 'build/src/**/*.ts'
 };
 
 gulp.task('clean', function(cb) {
@@ -32,13 +30,19 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('tsd', function (callback) {
-    tsd({
+  return tsd({
         command: 'reinstall',
         config: './typings/tsd.json'
     }, callback);
 });
 
-gulp.task('copy', function() {
+gulp.task('typings', function() {
+  // You can use multiple globbing patterns as you would with `gulp.src`
+  return gulp.src(config.ts_typings, {base: '.'})
+             .pipe(gulp.dest( config.build ));
+});
+
+gulp.task('src', function() {
   // You can use multiple globbing patterns as you would with `gulp.src`
   return gulp.src(config.ts_sources, {base: '.'})
              .pipe(gulp.dest( config.build ));
@@ -60,15 +64,16 @@ gulp.task('jsx', function() {
       }
     }
 
-    // console.log("jsx =>" + arguments[1]);
+    // console.log('jsx =>' + match);
 
     return '(' + reactCode + ')';
   }
 
-  gulp.src(config.build + '/src/**/*.ts')
-      .pipe(replace(/ReactJSX.*`([^`\\]*(\\.[^`\\]*)*)`([^`\\\)]*(\\.[^`\\\)]*)*)\)/gm, jsx))
-      // .pipe(log())
-      .pipe(gulp.dest(config.build + '/src/'));
+  return gulp.src([config.ts_sources,"!src/react/ReactJSX.ts"])
+            .pipe(replace(/ReactJSX.*`([^`\\]*(\\.[^`\\]*)*)`([^`\\\)]*(\\.[^`\\\)]*)*)\)/gm, jsx))
+            .pipe(replace(/import ReactJSX.*$/gm, ''))
+            // .pipe(log())
+            .pipe(gulp.dest(config.build + '/src/'));
 });
 
 gulp.task('build', function() {
@@ -88,7 +93,7 @@ gulp.task('build', function() {
 
   // var ts_project = ts.createProject('tsconfig.json');
 
-  return gulp.src( config.build + '/src/**/*.ts')
+  return gulp.src( config.ts_jsx)
         // .pipe(log())
         .pipe(ts(ts_options))
         .pipe(log())
@@ -148,7 +153,7 @@ gulp.task('minify', function() {
       // [OPTIONAL] Set exec method options
       execOpts: {
           /**
-           * Set maxBuffer if you got message "Error: maxBuffer exceeded."
+           * Set maxBuffer if you got message 'Error: maxBuffer exceeded.'
            * Node default: 200*1024
            */
           maxBuffer: 999999 * 1024
@@ -176,114 +181,124 @@ gulp.task('tslint', function(){
 
   var options = {
     configuration: {
-      "rules": {
-        "ban": [true,
-            ["_", "extend"],
-            ["_", "isNull"],
-            ["_", "isDefined"]
+      'rules': {
+        'ban': [true,
+            ['_', 'extend'],
+            ['_', 'isNull'],
+            ['_', 'isDefined']
         ],
-        "class-name": true,
-        "comment-format": [false,
-            "check-space",
-            "check-lowercase"
+        'class-name': true,
+        'comment-format': [false,
+            'check-space',
+            'check-lowercase'
         ],
-        "curly": true,
-        "eofline": true,
-        "forin": true,
-        "indent": [true, 4],
-        "interface-name": false,
-        "jsdoc-format": false,
-        "label-position": true,
-        "label-undefined": true,
-        "max-line-length": [true, 140],
-        "member-ordering": [true,
-            "public-before-private",
-            "static-before-instance",
-            "variables-before-functions"
+        'curly': true,
+        'eofline': true,
+        'forin': true,
+        'indent': [true, 4],
+        'interface-name': false,
+        'jsdoc-format': false,
+        'label-position': true,
+        'label-undefined': true,
+        'max-line-length': [true, 140],
+        'member-ordering': [false,
+            'public-before-private',
+            'static-before-instance',
+            'variables-before-functions'
         ],
-        "no-arg": true,
-        "no-bitwise": false,
-        "no-console": [true,
-            "debug",
-            "info-false",
-            "time",
-            "timeEnd",
-            "trace"
+        'no-arg': true,
+        'no-bitwise': false,
+        'no-console': [true,
+            'debug',
+            'info-false',
+            'time',
+            'timeEnd',
+            'trace'
         ],
-        "no-construct": true,
-        "no-constructor-vars": true,
-        "no-debugger": true,
-        "no-duplicate-key": true,
-        "no-duplicate-variable": true,
-        "no-empty": false,
-        "no-eval": true,
-        "no-string-literal": true,
-        "no-switch-case-fall-through": true,
-        "no-trailing-comma": true,
-        "no-trailing-whitespace": true,
-        "no-unused-expression": false,
-        "no-unused-variable": true,
-        "no-unreachable": true,
-        "no-use-before-declare": true,
-        "no-var-requires": false,
-        "one-line": [false,
-            "check-open-brace",
-            "check-catch",
-            "check-else",
-            "check-whitespace"
+        'no-construct': true,
+        'no-constructor-vars': true,
+        'no-debugger': true,
+        'no-duplicate-key': true,
+        'no-duplicate-variable': true,
+        'no-empty': false,
+        'no-eval': true,
+        'no-string-literal': true,
+        'no-switch-case-fall-through': true,
+        'no-trailing-comma': true,
+        'no-trailing-whitespace': false,
+        'no-unused-expression': false,
+        'no-unused-variable': true,
+        'no-unreachable': true,
+        'no-use-before-declare': true,
+        'no-var-requires': false,
+        'one-line': [false,
+            'check-open-brace',
+            'check-catch',
+            'check-else',
+            'check-whitespace'
         ],
-        "quotemark": [false, "double"],
-        "radix": true,
-        "semicolon": true,
-        "triple-equals": [false, "allow-null-check"],
-        "typedef": [true,
-            "callSignature",
-            "indexSignature",
-            "parameter",
-            "propertySignature",
-            "variableDeclarator"
+        'quotemark': [false, 'double'],
+        'radix': true,
+        'semicolon': true,
+        'triple-equals': [false, 'allow-null-check'],
+        'typedef': [true,
+            'callSignature',
+            'indexSignature',
+            'parameter',
+            'propertySignature',
+            'variableDeclarator'
         ],
-        "typedef-whitespace": [true,
-            ["callSignature", "noSpace"],
-            ["catchClause", "noSpace"],
-            ["indexSignature", "space"]
+        'typedef-whitespace': [true,
+            ['callSignature', 'noSpace'],
+            ['catchClause', 'noSpace'],
+            ['indexSignature', 'space']
         ],
-        "use-strict": [false,
-            "check-module",
-            "check-function"
+        'use-strict': [false,
+            'check-module',
+            'check-function'
         ],
-        "variable-name": false,
-        "whitespace": [false,
-            "check-branch",
-            "check-decl",
-            "check-operator",
-            "check-separator",
-            "check-type"
+        'variable-name': false,
+        'whitespace': [false,
+            'check-branch',
+            'check-decl',
+            'check-operator',
+            'check-separator',
+            'check-type'
         ]
       }
     }
   };
 
-  gulp.src('./src/**/*.ts')
+  return gulp.src(config.build + '/src/**/*.ts')
     .pipe(tslint(options))
-    .pipe(tslint.report('prose'))
-    .pipe(log());
+    .pipe(tslint.report('prose'));
 });
 
+/**
+  The 'debug' task does not include:
+  jsx, tslint
+
+ */
 gulp.task('debug', function(callback) {
-  runSequence(
-    'clean',
-    'copy',
-    'jsx',
-    'build',
-    'bundle',
-    callback);
+  return runSequence(
+          'clean',
+          'src',
+          'typings',
+          'build',
+          'bundle',
+          callback);
 });
 
 gulp.task('release', ['debug'], function(callback) {
-  runSequence(
-    'minify',
-    callback);
+  return runSequence(
+          'clean',
+          'typings',
+          'jsx',
+          'tslint',
+          'build',
+          'bundle',
+          'minify',
+          callback);
 });
 
 gulp.task('default', ['release']);

@@ -25,7 +25,6 @@
         "./build/src/constants/TodoConstants.ts",
         "./build/src/dispatcher/AppDispatcher.ts",
         "./build/src/react/ReactComponent.ts",
-        "./build/src/react/ReactJSX.ts",
         "./build/src/stores/TodoStore.ts",
         "./build/typings/browserify/browserify.d.ts",
         "./build/typings/flux/flux.d.ts",
