@@ -1,7 +1,7 @@
 var require = require || null;
 
 var gulp = require('gulp');
-var clean = require('gulp-clean');
+var del = require('del');
 var ts = require('gulp-typescript');
 var filter = require('gulp-filter');
 var log = require('gulp-print');
@@ -24,9 +24,8 @@ var config = {
   ts_jsx: 'build/src/**/*.ts'
 };
 
-gulp.task('clean', function(cb) {
-  return gulp.src(config.build)
-             .pipe(clean());
+gulp.task('clean', function(callback) {
+  del(config.build, callback);
 });
 
 gulp.task('tsd', function (callback) {

@@ -6,15 +6,15 @@
   "license": "MIT",
   "repository": "https://github.com/bparadie/fluxts-todomvc",
   "scripts": {
-    "postinstall": "./node_modules/grunt-cli/bin/grunt build",
+    "postinstall": "gulp release",
     "start": "open ./public/index.html"
   },
   "devDependencies": {
     "closure-compiler": "0.2.6",
+    "del": "1.1.1",
     "flux": "2.0.3",
     "gulp": "3.8.11",
     "gulp-browserify": "0.5.1",
-    "gulp-clean": "0.3.1",
     "gulp-closure-compiler": "0.2.19",
     "gulp-concat": "2.5.2",
     "gulp-filter": "2.0.2",
@@ -22,7 +22,7 @@
     "gulp-replace": "0.5.3",
     "gulp-tsd": "0.0.4",
     "gulp-typescript": "2.7.1",
-    "gulp-util": "^3.0.4",
+    "gulp-util": "3.0.4",
     "object-assign": "2.0.0",
     "react-tools": "0.13.2",
     "run-sequence": "1.1.0",
