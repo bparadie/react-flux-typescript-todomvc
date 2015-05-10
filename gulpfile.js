@@ -1,5 +1,4 @@
 var require = require || null;
-var console = console || null;
 
 var gulp = require('gulp');
 var clean = require('gulp-clean');
@@ -14,6 +13,7 @@ var tsd = require('gulp-tsd');
 var closureCompiler = require('gulp-closure-compiler');
 var runSequence = require('run-sequence');
 var tslint = require('gulp-tslint');
+var gutil = require('gulp-util');
 
 var config = {
   build: 'build',
@@ -60,16 +60,16 @@ gulp.task('jsx', function() {
         reactCode = reactTools.transform(match, { harmony: false });
       }
       catch (ex) {
-        console.error('Problem transforming the following:\n' + match + '\n\n' + ex);
+        gutil.error('Problem transforming the following:\n' + match + '\n\n' + ex);
       }
     }
 
-    // console.log('jsx =>' + match);
+    // gutil.log('jsx =>' + match);
 
     return '(' + reactCode + ')';
   }
 
-  return gulp.src([config.ts_sources,"!src/react/ReactJSX.ts"])
+  return gulp.src([config.ts_sources,'!src/react/ReactJSX.ts'])
             .pipe(replace(/ReactJSX.*`([^`\\]*(\\.[^`\\]*)*)`([^`\\\)]*(\\.[^`\\\)]*)*)\)/gm, jsx))
             .pipe(replace(/import ReactJSX.*$/gm, ''))
             // .pipe(log())
@@ -277,7 +277,6 @@ gulp.task('tslint', function(){
 /**
   The 'debug' task does not include:
   jsx, tslint
-
  */
 gulp.task('debug', function(callback) {
   return runSequence(
@@ -289,7 +288,7 @@ gulp.task('debug', function(callback) {
           callback);
 });
 
-gulp.task('release', ['debug'], function(callback) {
+gulp.task('release', function(callback) {
   return runSequence(
           'clean',
           'typings',
@@ -299,6 +298,17 @@ gulp.task('release', ['debug'], function(callback) {
           'bundle',
           'minify',
           callback);
+});
+
+gulp.task('help', function(callback) {
+  gutil.log('');
+  gutil.log('USAGE:');
+  gutil.log('Open public/index.html in browser.');
+  gutil.log('');
+  gutil.log('TASKS:');
+  gutil.log('debug   - builds public/js/bundle.js with runtime JSX renderer.');
+  gutil.log('release - builds public/js/bundle.min.js with expanded JSX.');
+  gutil.log('');
 });
 
 gulp.task('default', ['release']);
