@@ -75,7 +75,7 @@ gulp.task('jsx', function() {
             .pipe(gulp.dest(config.build + '/src/'));
 });
 
-gulp.task('build', function() {
+gulp.task('ts', function() {
   // Minify and copy all JavaScript (except vendor scripts)
   // with sourcemaps all the way down
 
@@ -281,7 +281,7 @@ gulp.task('debug', function(callback) {
   return runSequence(
           'clean',
           ['typings','src'],
-          'build',
+          'ts',
           'bundle',
           callback);
 });
@@ -293,7 +293,7 @@ gulp.task('release', function(callback) {
           'tsd',
           ['typings','jsx'],
           'tslint',
-          'build',
+          'ts',
           'bundle',
           'minify',
           callback);
@@ -318,5 +318,7 @@ gulp.task('help', function(callback) {
   gutil.log('release - builds public/js/bundle.min.js with expanded JSX.');
   gutil.log('');
 });
+
+gulp.task('build', ['debug']);
 
 gulp.task('default', ['release']);
