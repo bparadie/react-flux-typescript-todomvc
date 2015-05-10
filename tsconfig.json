@@ -28,7 +28,6 @@
         "./build/src/stores/TodoStore.ts",
         "./build/typings/browserify/browserify.d.ts",
         "./build/typings/flux/flux.d.ts",
-        "./build/typings/lib.d.ts",
         "./build/typings/node/node.d.ts",
         "./build/typings/object-assign/object-assign.d.ts",
         "./build/typings/react-jsx/react-jsx.d.ts",
@@ -37,6 +36,7 @@
         "./build/typings/react/react-global.d.ts",
         "./build/typings/react/react.d.ts",
         "./build/typings/todomvc/todomvc.d.ts",
-        "./build/typings/tsd.d.ts"
+        "./build/typings/tsd.d.ts",
+        "./build/typings/typings/tsd.d.ts"
     ]
 }

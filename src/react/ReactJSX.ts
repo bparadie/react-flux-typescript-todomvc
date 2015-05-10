@@ -16,7 +16,7 @@ interface MapStringTo<T> {
   http://perfectionkills.com/global-eval-what-are-the-options/
 */
 
-function ReactJSX<T>( jsx: string, owner: any, imports: MapStringTo<any> = {} ): React.ReactElement<T>
+function ReactJSX<T>( jsx: string, owner: any = null, imports: MapStringTo<any> = {} ): React.ReactElement<T>
 {
   var reactCode: string = "function jsx(imports) { \n";
 
