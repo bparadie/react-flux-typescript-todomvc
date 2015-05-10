@@ -286,6 +286,7 @@ gulp.task('debug', function(callback) {
           callback);
 });
 
+
 gulp.task('release', function(callback) {
   return runSequence(
           'clean',
@@ -295,6 +296,15 @@ gulp.task('release', function(callback) {
           'build',
           'bundle',
           'minify',
+          callback);
+});
+
+gulp.task('lint', function(callback) {
+  return runSequence(
+          'clean',
+          'tsd',
+          ['typings','jsx'],
+          'tslint',
           callback);
 });
 

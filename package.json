@@ -7,7 +7,9 @@
   "repository": "https://github.com/bparadie/fluxts-todomvc",
   "scripts": {
     "postinstall": "gulp release",
-    "start": "open ./public/index.html"
+    "start": "open ./public/index.html",
+    "lint": "gulp lint",
+    "help": "gulp help"
   },
   "devDependencies": {
     "closure-compiler": "0.2.6",
