@@ -280,8 +280,7 @@ gulp.task('tslint', function(){
 gulp.task('debug', function(callback) {
   return runSequence(
           'clean',
-          'src',
-          'typings',
+          ['typings','src'],
           'build',
           'bundle',
           callback);
@@ -290,8 +289,8 @@ gulp.task('debug', function(callback) {
 gulp.task('release', function(callback) {
   return runSequence(
           'clean',
-          'typings',
-          'jsx',
+          'tsd',
+          ['typings','jsx'],
           'tslint',
           'build',
           'bundle',
