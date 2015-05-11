@@ -7,13 +7,11 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-'use strict';
-
 import React = require('react/addons');
-var ReactPropTypes = React.PropTypes;
 import ReactComponent = require('../react/ReactComponent');
 import ReactJSX = require('../react/ReactJSX');
 
+var ReactPropTypes = React.PropTypes;
 var ENTER_KEY_CODE = 13;
 
 interface TodoTextInputState

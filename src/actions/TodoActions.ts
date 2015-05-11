@@ -9,11 +9,10 @@
  * TodoActions
  */
 
-'use strict';
+///<reference path="../stores/TodoStore.ts"/>
 
 import AppDispatcher = require('../dispatcher/AppDispatcher');
 import TodoConstants = require('../constants/TodoConstants');
-
 
 class TodoActionsStatic {
 

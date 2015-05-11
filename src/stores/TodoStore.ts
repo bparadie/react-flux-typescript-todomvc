@@ -9,14 +9,14 @@
  * TodoStore
  */
 
-///<reference path="../../typings/todomvc/todomvc.d.ts"/>
 ///<reference path="../../typings/node/node.d.ts"/>
+///<reference path="../../typings/todomvc/todomvc.d.ts"/>
+///<reference path="../../typings/object-assign/object-assign.d.ts"/>
 
 import AppDispatcher = require('../dispatcher/AppDispatcher');
 import TodoConstants = require('../constants/TodoConstants');
 import assign = require('object-assign');
 import events = require('events');
-
 
 var CHANGE_EVENT = 'change';
 

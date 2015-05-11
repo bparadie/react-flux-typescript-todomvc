@@ -1,3 +1,7 @@
+///<reference path="../../typings/react/react.d.ts"/>
+///<reference path="../../typings/react/react-addons.d.ts"/>
+///<reference path="../../typings/react-tools/react-tools.d.ts"/>
+
 import React = require('react/addons');
 import ReactTools = require('react-tools');
 

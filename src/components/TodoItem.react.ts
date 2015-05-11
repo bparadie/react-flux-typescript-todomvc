@@ -7,16 +7,16 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-'use strict';
+///<reference path="../../typings/react-jsx/react-jsx.d.ts"/>
 
 import React = require('react/addons');
-var ReactPropTypes = React.PropTypes;
 import TodoActions = require('../actions/TodoActions');
 import TodoTextInput = require('./TodoTextInput.react');
 import ReactComponent = require('../react/ReactComponent');
 import ReactJSX = require('../react/ReactJSX');
-
 import cx = require('react/lib/cx');
+
+var ReactPropTypes = React.PropTypes;
 
 interface TodoItemState
 {
