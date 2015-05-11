@@ -1,10 +1,17 @@
+# Generated folders 
 build/
 public/
 node_modules/
+
+# Visual Studio Code settings
+.settings/
+
+# typings
 /typings/*
-/src/.baseDir.ts
 !/typings/tsd.d.ts
 !/typings/todomvc/todomvc.d.ts
 !/typings/react-jsx/react-jsx.d.ts
 !/typings/react-tools/react-tools.d.ts
+
+# Node logs
 npm-debug.log
