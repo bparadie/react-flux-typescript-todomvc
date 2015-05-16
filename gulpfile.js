@@ -17,7 +17,7 @@ var gutil = require('gulp-util');
 
 var config = {
   build: 'build',
-  public: 'public',
+  web: 'web',
   js_generated: 'build/js',
   ts_typings: './typings/**',
   ts_sources: './src/**/*.ts',
@@ -109,7 +109,7 @@ gulp.task('bundle', function() {
         }))
         .pipe(concat('bundle.js'))
         .pipe(log())
-        .pipe(gulp.dest( config.public + '/js/'));
+        .pipe(gulp.dest( config.web + '/js/'));
 });
 
 gulp.task('minify', function() {
@@ -167,10 +167,10 @@ gulp.task('minify', function() {
       TieredCompilation: true // will use 'java -server -XX:+TieredCompilation -jar compiler.jar'
   };
 
-  return gulp.src(config.public + '/js/bundle.js')
+  return gulp.src(config.web + '/js/bundle.js')
             .pipe(closureCompiler(options))
             .pipe(log())
-            .pipe(gulp.dest(config.public + '/js/'));
+            .pipe(gulp.dest(config.web + '/js/'));
 });
 
 gulp.task('tslint', function(){
@@ -308,11 +308,11 @@ gulp.task('lint', function(callback) {
 gulp.task('help', function(callback) {
   gutil.log('');
   gutil.log('USAGE:');
-  gutil.log('Open public/index.html in browser.');
+  gutil.log('Open web/index.html in browser.');
   gutil.log('');
   gutil.log('TASKS:');
-  gutil.log('debug   - builds public/js/bundle.js with runtime JSX renderer.');
-  gutil.log('release - builds public/js/bundle.min.js with expanded JSX.');
+  gutil.log('debug   - builds web/js/bundle.js with runtime JSX renderer.');
+  gutil.log('release - builds web/js/bundle.min.js with expanded JSX.');
   gutil.log('');
 });
 
