@@ -132,7 +132,8 @@ gulp.task('minify', function() {
         ],
         externs: [
           'externs/browserify.js',
-          'externs/react.js'
+          'externs/react.js',
+          'externs/todomvc.js'
         ],
         jscomp_off: [
           'checkTypes',

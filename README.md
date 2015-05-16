@@ -6,7 +6,7 @@
 
 <br>
 
-> Flux is the application architecture that Facebook uses for building client-side web applications. It complements React's composable view components by utilizing a unidirectional data flow.  is a Javascript library for building user interfaces. React uses a virtual DOM diff implementation for ultra-high performance.
+> Flux is the application architecture that Facebook uses for building client-side web applications. It complements React's composable view components by utilizing a unidirectional data flow.  
 
 > _[Flux - facebook.github.io/flux](https://facebook.github.io/flux/)_
 
