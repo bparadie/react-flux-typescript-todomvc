@@ -22,6 +22,9 @@
     },
     "flux/flux.d.ts": {
       "commit": "b3834d886a95789e6ab56e8244775ec10c5293d0"
+    },
+    "eventemitter3/eventemitter3.d.ts": {
+      "commit": "b3834d886a95789e6ab56e8244775ec10c5293d0"
     }
   }
 }

@@ -9,14 +9,14 @@
  * TodoStore
  */
 
-///<reference path="../../typings/node/node.d.ts"/>
+///<reference path="../../typings/eventemitter3/eventemitter3.d.ts"/>
 ///<reference path="../../typings/todomvc/todomvc.d.ts"/>
 ///<reference path="../../typings/object-assign/object-assign.d.ts"/>
 
 import AppDispatcher = require('../dispatcher/AppDispatcher');
 import TodoConstants = require('../constants/TodoConstants');
 import assign = require('object-assign');
-import events = require('events');
+import EventEmitter = require('eventemitter3');
 
 var CHANGE_EVENT = 'change';
 
@@ -92,7 +92,7 @@ function destroyCompleted(): void {
   }
 }
 
-class TodoStoreStatic extends events.EventEmitter {
+class TodoStoreStatic extends EventEmitter {
 
   /**
    * Tests whether all the remaining TODO items are marked as completed.
