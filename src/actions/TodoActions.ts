@@ -7,6 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  *
  * TodoActions
+ *
+ * Typescript port by Bernd Paradies, May 2015
+ * @see https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/actions/TodoActions.js
  */
 
 ///<reference path="../stores/TodoStore.ts"/>
@@ -49,13 +52,13 @@ class TodoActionsStatic {
     var id: string = todo.id;
     if (todo.complete) {
       AppDispatcher.dispatch({
-        actionType: TodoConstants.TODO_UNDO_COMPLETE,
-        id: id
+	     actionType: TodoConstants.TODO_UNDO_COMPLETE,
+	     id: id
       });
     } else {
       AppDispatcher.dispatch({
-        actionType: TodoConstants.TODO_COMPLETE,
-        id: id
+	     actionType: TodoConstants.TODO_COMPLETE,
+	     id: id
       });
     }
   }
@@ -87,7 +90,6 @@ class TodoActionsStatic {
       actionType: TodoConstants.TODO_DESTROY_COMPLETED
     });
   }
-
 }
 
 var TodoActions: TodoActionsStatic = new TodoActionsStatic();

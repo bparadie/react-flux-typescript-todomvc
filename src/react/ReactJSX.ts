@@ -20,8 +20,7 @@ interface MapStringTo<T> {
   http://perfectionkills.com/global-eval-what-are-the-options/
 */
 
-function ReactJSX<T>( jsx: string, owner: any = null, imports: MapStringTo<any> = {} ): React.ReactElement<T>
-{
+function ReactJSX<T>( jsx: string, owner: any = null, imports: MapStringTo<any> = {} ): React.ReactElement<T> {
   var reactCode: string = "function jsx(imports) { \n";
 
   // No need to let every call site add React to the imports.
@@ -29,8 +28,7 @@ function ReactJSX<T>( jsx: string, owner: any = null, imports: MapStringTo<any> 
   reactCode += "var React = imports.React;\n";
   imports['React'] = _react;
 
-  for( var im in imports )
-  {
+  for( var im in imports ) {
     reactCode += "var " + im + " = imports." + im + ";\n";
   }
 
@@ -42,7 +40,6 @@ function ReactJSX<T>( jsx: string, owner: any = null, imports: MapStringTo<any> 
   // as long as all scope variables are captured in 'imports'.
   var fn: () => React.ReactElement<T> = eval.call(null,reactCode);
   var element: React.ReactElement<T> = fn.call(owner, imports);
-
   return element;
 }
 

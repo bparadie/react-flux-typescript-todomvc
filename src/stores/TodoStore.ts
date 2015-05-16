@@ -7,6 +7,10 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  *
  * TodoStore
+ *
+ * Typescript port by Bernd Paradies, May 2015
+ * @see https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/stores/TodoStore.js
+ *
  */
 
 ///<reference path="../../typings/eventemitter3/eventemitter3.d.ts"/>
@@ -23,8 +27,7 @@ var CHANGE_EVENT = 'change';
 type TodoMap = MapStringTo<TodoData>;
 var _todos: TodoMap = {};
 
-interface TodoUpdateData
-{
+interface TodoUpdateData {
   id?: string;
   complete?: boolean;
   text?: string;
@@ -58,7 +61,7 @@ function update(id: string, updates: TodoUpdateData): void {
 
 /**
  * Update all of the TODO items with the same object.
- *     the data to be updated.  Used to mark all TODOs as completed.
+ *     the data to be updated.	Used to mark all TODOs as completed.
  * @param  {object} updates An object literal containing only the data to be
  *     updated.
 
@@ -103,7 +106,7 @@ class TodoStoreStatic extends EventEmitter {
 
     for(id in _todos) {
       if(!_todos[id].complete) {
-        return false;
+	       return false;
       }
     }
     return true;
@@ -146,16 +149,16 @@ AppDispatcher.register( function(action:TodoAction): void {
     case TodoConstants.TODO_CREATE:
       text = action.text.trim();
       if (text !== '') {
-        create(text);
+	     create(text);
       }
       TodoStore.emitChange();
       break;
 
     case TodoConstants.TODO_TOGGLE_COMPLETE_ALL:
       if (TodoStore.areAllComplete()) {
-        updateAll({complete: false});
+	     updateAll({complete: false});
       } else {
-        updateAll({complete: true});
+	     updateAll({complete: true});
       }
       TodoStore.emitChange();
       break;
@@ -173,7 +176,7 @@ AppDispatcher.register( function(action:TodoAction): void {
     case TodoConstants.TODO_UPDATE_TEXT:
       text = action.text.trim();
       if (text !== '') {
-        update(action.id, {text: text});
+	     update(action.id, {text: text});
       }
       TodoStore.emitChange();
       break;
@@ -188,7 +191,7 @@ AppDispatcher.register( function(action:TodoAction): void {
       TodoStore.emitChange();
       break;
 
-    default:
+    // default:
       // no op
   }
 });

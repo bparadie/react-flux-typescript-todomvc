@@ -5,6 +5,10 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
+ * 
+ * Typescript port by Bernd Paradies, May 2015
+ * @see https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/TodoTextInput.react.js
+ *
  */
 
 import React = require('react/addons');
@@ -14,21 +18,17 @@ import ReactJSX = require('../react/ReactJSX');
 var ReactPropTypes = React.PropTypes;
 var ENTER_KEY_CODE = 13;
 
-interface TodoTextInputState
-{
+interface TodoTextInputState {
   value: string;
 }
 
-interface TodoTextInputProps
-{
+interface TodoTextInputProps {
   className: string;
   id: string;
   placeholder: string;
   onSave: (value:string) => void;
   value: string;
 }
-
-
 
 interface InputEvent {
   target: HTMLInputElement;
@@ -49,7 +49,6 @@ class TodoTextInput extends ReactComponent<any,TodoTextInputState> {
     onSave: ReactPropTypes.func.isRequired,
     value: ReactPropTypes.string
   };
-
 
   /**
    * Invokes the callback passed in as onSave, allowing this component to be
@@ -93,19 +92,18 @@ class TodoTextInput extends ReactComponent<any,TodoTextInputState> {
     // this.state = this.state || this.getInitialState();
     return ReactJSX<TodoTextInputElement>(`
       <input
-        className={this.props.className}
-        id={this.props.id}
-        placeholder={this.props.placeholder}
-        onBlur={this._save}
-        onChange={this._onChange}
-        onKeyDown={this._onKeyDown}
-        value={this.state.value}
-        autoFocus={true}
+				className={this.props.className}
+				id={this.props.id}
+				placeholder={this.props.placeholder}
+				onBlur={this._save}
+				onChange={this._onChange}
+				onKeyDown={this._onKeyDown}
+				value={this.state.value}
+				autoFocus={true}
       />
     `,
     this);
   }
-
 };
 
 export = TodoTextInput;

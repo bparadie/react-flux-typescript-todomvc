@@ -9,6 +9,10 @@
  * AppDispatcher
  *
  * A singleton that operates as the central hub for application updates.
+ *
+ * Typescript port by Bernd Paradies, May 2015
+ * @see https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/dispatcher/AppDispatcher.js
+ *
  */
 
 ///<reference path="../../typings/flux/flux.d.ts"/>

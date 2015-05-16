@@ -7,10 +7,13 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  *
  * TodoConstants
+ *
+ * Typescript port by Bernd Paradies, May 2015
+ * @see https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/constants/TodoConstants.js
+ *
  */
 
-enum TodoConstants
-{
+enum TodoConstants {
     TODO_CREATE,
     TODO_COMPLETE,
     TODO_DESTROY,

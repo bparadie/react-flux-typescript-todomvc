@@ -3,9 +3,8 @@
 
 import React = require('react/addons');
 
-class ReactComponent<P,S> extends React.Component<P,S>
-{
-
+class ReactComponent<P,S> extends React.Component<P,S> {
+  
   public getDerivedInitialState(): S {
     return null;
   }
@@ -17,8 +16,8 @@ class ReactComponent<P,S> extends React.Component<P,S>
   /**
    * @see React.createClass
    */
-  constructor(props:P, context:any)
-  {
+  constructor(props:P, context:any) {
+    
     super(props, context);
 
     this.props = props;

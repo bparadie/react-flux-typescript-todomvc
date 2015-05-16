@@ -5,6 +5,9 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * Typescript port by Bernd Paradies, May 2015
+ * @see https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/Footer.react.js
  */
 
 ///<reference path="../../typings/todomvc/todomvc.d.ts"/>
@@ -12,29 +15,26 @@
 import React = require('react/addons');
 import ReactComponent = require('../react/ReactComponent');
 import ReactJSX = require('../react/ReactJSX');
-
-var ReactPropTypes: React.ReactPropTypes = React.PropTypes;
 import TodoActions = require('../actions/TodoActions');
 
-interface FooterProps
-{
+var ReactPropTypes: React.ReactPropTypes = React.PropTypes;
+
+interface FooterProps {
   allTodos: MapStringTo<TodoData>;
 }
 
-interface FooterElement
-{
+interface FooterElement {
   id: string;
 }
 
-interface ClearCompletedButton
-{
+interface ClearCompletedButton {
   id: string;
   onClick: () => void;
 }
 
 class Footer extends ReactComponent<FooterProps,any> {
 
-  static propTypes: React.ValidationMap<FooterProps> =  {
+  static propTypes: React.ValidationMap<FooterProps> =	{
     allTodos: ReactPropTypes.object.isRequired
   };
 
@@ -65,7 +65,7 @@ class Footer extends ReactComponent<FooterProps,any> {
 
     for (key in allTodos) {
       if (allTodos[key].complete) {
-        completed++;
+	     completed++;
       }
     }
 
@@ -76,32 +76,35 @@ class Footer extends ReactComponent<FooterProps,any> {
     // Undefined and thus not rendered if no completed items are left.
     if (completed) {
       clearCompletedButton =
-          ReactJSX<ClearCompletedButton>(`<button
-          id="clear-completed"
-          onClick={this._onClearCompletedClick}>
-          Clear completed ({completed})
-        </button>`,
-        this,
-        {
-          completed: completed
-        });
+	     ReactJSX<ClearCompletedButton>(`
+				<button
+	       id="clear-completed"
+	       onClick={this._onClearCompletedClick}>
+	       Clear completed ({completed})
+				</button>`,
+				this,
+				{
+					completed: completed
+				});
     }
 
-    return ReactJSX<FooterElement>(`<footer id="footer">
-        <span id="todo-count">
-          <strong>
-            {itemsLeft}
-          </strong>
-          {itemsLeftPhrase}
-        </span>
-        {clearCompletedButton}
+    return ReactJSX<FooterElement>(`
+      <footer id="footer">
+	     <span id="todo-count">
+	       <strong>
+	       {itemsLeft}
+	       </strong>
+	       {itemsLeftPhrase}
+	     </span>
+	     {clearCompletedButton}
       </footer>`,
       this,
       {
-        'itemsLeft': itemsLeft,
-        'itemsLeftPhrase': itemsLeftPhrase,
-        'clearCompletedButton': clearCompletedButton
-      });
+	      'itemsLeft': itemsLeft,
+	      'itemsLeftPhrase': itemsLeftPhrase,
+	      'clearCompletedButton': clearCompletedButton
+      }
+    );
   }
 }
 
