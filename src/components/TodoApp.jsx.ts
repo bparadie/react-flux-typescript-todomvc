@@ -12,9 +12,9 @@
  * the TodoStore and passes the new data to its children.
  */
 
-import Footer = require('./Footer.react');
-import Header = require('./Header.react');
-import MainSection = require('./MainSection.react');
+import Footer = require('./Footer.jsx');
+import Header = require('./Header.jsx');
+import MainSection = require('./MainSection.jsx');
 import React = require('react/addons');
 import TodoStore = require('../stores/TodoStore');
 import ReactComponent = require('../react/ReactComponent');

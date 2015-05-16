@@ -9,7 +9,7 @@
 
 import React = require('react/addons');
 import TodoActions = require('../actions/TodoActions');
-import TodoTextInput = require('./TodoTextInput.react');
+import TodoTextInput = require('./TodoTextInput.jsx');
 import ReactComponent = require('../react/ReactComponent');
 import ReactJSX = require('../react/ReactJSX');
 

@@ -9,7 +9,7 @@
 
 import React = require('react/addons');
 import TodoActions = require('../actions/TodoActions');
-import TodoItem = require('./TodoItem.react');
+import TodoItem = require('./TodoItem.jsx');
 import ReactComponent = require('../react/ReactComponent');
 import ReactJSX = require('../react/ReactJSX');
 

@@ -12,7 +12,7 @@
 import React = require('react');
 import ReactJSX = require('./react/ReactJSX');
 
-import TodoApp = require('./components/TodoApp.react');
+import TodoApp = require('./components/TodoApp.jsx');
 
 React.render(
   ReactJSX(`<TodoApp />`, this, {
