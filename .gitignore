@@ -15,3 +15,6 @@ node_modules/
 
 # Node logs
 npm-debug.log
+
+# OSX
+.DS_Store

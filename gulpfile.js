@@ -63,6 +63,7 @@ gulp.task('jsx', function() {
       }
     }
 
+    // In case you need to debug this:
     // gutil.log('jsx =>' + match);
 
     return '(' + reactCode + ')';
@@ -87,13 +88,11 @@ gulp.task('ts', function() {
       noImplicitAny: true,                    // Warn on expressions and declarations with an implied 'any' type.
       module: 'commonjs',
       outDir: config.js_generated,
-      fast: 'never'
+      fast: 'never',
+      typescript: require('typescript')
   };
 
-  // var ts_project = ts.createProject('tsconfig.json');
-
   return gulp.src( config.ts_jsx)
-        // .pipe(log())
         .pipe(ts(ts_options))
         .pipe(log())
         .pipe(gulp.dest( config.build + '/js/'));
@@ -102,8 +101,6 @@ gulp.task('ts', function() {
 gulp.task('bundle', function() {
   // Minify and copy all JavaScript (except vendor scripts)
   // with sourcemaps all the way down
-
-  // var ts_project = ts.createProject('tsconfig.json');
 
   return gulp.src( config.build + '/js/app.js')
         .pipe(browserify({
