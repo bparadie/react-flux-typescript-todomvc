@@ -11,6 +11,7 @@ node_modules/
 !/typings/todomvc/todomvc.d.ts
 !/typings/react-jsx/react-jsx.d.ts
 !/typings/react-tools/react-tools.d.ts
+!/typings/store/store.d.ts
 
 # Node logs
 npm-debug.log

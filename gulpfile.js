@@ -102,11 +102,21 @@ gulp.task('bundle', function() {
   // Minify and copy all JavaScript (except vendor scripts)
   // with sourcemaps all the way down
 
+  // 'function ieKeyFix(key)' => 'var ieKeyFix = function(key)'
+  // node_modules/store/store.js declares a function 'ieKeyFix' in the middle of another function and triggers:
+  // ERROR - functions can only be declared at top level or immediately within another function in ES5 strict mode
+
+  // 'this.module !== module' => 'window.module !== module' 
+  // node_modules/store/store.js has some questionable code that triggered:
+  // Uncaught TypeError: Cannot read property 'module' of undefined
+  
   return gulp.src( config.build + '/js/app.jsx.js')
 	.pipe(browserify({
 	  insertGlobals : true,
 	  debug: true
 	}))
+  .pipe(replace(/function ieKeyFix\(key\)/gm, 'var ieKeyFix = function(key)'))
+  .pipe(replace(/this.module !== module/gm, 'window.module !== module'))
 	.pipe(concat('bundle.js'))
 	.pipe(log())
 	.pipe(gulp.dest( config.web + '/js/'));
