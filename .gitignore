@@ -2,9 +2,6 @@
 build/
 node_modules/
 
-# Visual Studio Code settings
-.settings/
-
 # typings
 /typings/*
 !/typings/tsd.d.ts
@@ -13,8 +10,3 @@ node_modules/
 !/typings/react-tools/react-tools.d.ts
 !/typings/store/store.d.ts
 
-# Node logs
-npm-debug.log
-
-# OSX
-.DS_Store
