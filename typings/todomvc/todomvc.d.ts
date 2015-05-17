@@ -1,43 +1,32 @@
-interface MapStringTo<T>
-{
+interface MapStringTo<T> {
   [key:string]: T;
 }
 
-interface TodoData
-{
+interface TodoData {
   id: string;
   complete: boolean;
   text: string;
 }
 
-interface TodoState
-{
+interface TodoState {
   allTodos: MapStringTo<TodoData>;
   areAllComplete: boolean;
 }
 
-interface TodoItemProps
-{
+interface TodoItemProps {
   todo: TodoData;
 }
 
-interface TodoAction
-{
+interface TodoAction {
   actionType: number;
   id?: string;
   text?: string;
 }
 
-interface TodoTextInputElement
-{
+interface TodoTextInputElement {
   id: string;
 }
 
-declare module todomfc
-{
+declare module todomvc {
   type TodoMap = MapStringTo<TodoData>;
 }
-
-
-
-

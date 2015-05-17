@@ -1,5 +1,5 @@
 
-declare module "react-tools" {
+declare module 'react-tools' {
 
   interface TransformOptions
   {
