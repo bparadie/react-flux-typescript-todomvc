@@ -6,14 +6,14 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * TodoConstants
+ * TodoActionID
  *
  * Typescript port by Bernd Paradies, May 2015
  * @see https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/constants/TodoConstants.js
  *
  */
 
-enum TodoConstants {
+enum TodoActionID {
     TODO_CREATE,
     TODO_COMPLETE,
     TODO_DESTROY,
@@ -23,4 +23,4 @@ enum TodoConstants {
     TODO_UPDATE_TEXT
 }
 
-export = TodoConstants;
+export = TodoActionID;

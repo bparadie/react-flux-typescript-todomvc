@@ -15,19 +15,19 @@
 ///<reference path='../stores/TodoStore.ts'/>
 
 import AppDispatcher = require('../dispatcher/AppDispatcher');
-import TodoConstants = require('../constants/TodoConstants');
+import TodoActionID = require('./TodoActionID');
 
 class TodoActionsStatic {
 
   // so jshint won't bark
-  public TodoConstants = TodoConstants;
+  public TodoActionID = TodoActionID;
 
   /**
    * @param  {string} text
    */
   public create(text:string): void {
     AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_CREATE,
+      actionType: TodoActionID.TODO_CREATE,
       text: text
     });
   }
@@ -38,7 +38,7 @@ class TodoActionsStatic {
    */
   public updateText(id: string, text:string): void {
     AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_UPDATE_TEXT,
+      actionType: TodoActionID.TODO_UPDATE_TEXT,
       id: id,
       text: text
     });
@@ -52,12 +52,12 @@ class TodoActionsStatic {
     var id: string = todo.id;
     if (todo.complete) {
       AppDispatcher.dispatch({
-	     actionType: TodoConstants.TODO_UNDO_COMPLETE,
+	     actionType: TodoActionID.TODO_UNDO_COMPLETE,
 	     id: id
       });
     } else {
       AppDispatcher.dispatch({
-	     actionType: TodoConstants.TODO_COMPLETE,
+	     actionType: TodoActionID.TODO_COMPLETE,
 	     id: id
       });
     }
@@ -68,7 +68,7 @@ class TodoActionsStatic {
    */
   public toggleCompleteAll(): void {
     AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_TOGGLE_COMPLETE_ALL
+      actionType: TodoActionID.TODO_TOGGLE_COMPLETE_ALL
     });
   }
 
@@ -77,7 +77,7 @@ class TodoActionsStatic {
    */
   public destroy(id: string): void {
     AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_DESTROY,
+      actionType: TodoActionID.TODO_DESTROY,
       id: id
     });
   }
@@ -87,7 +87,7 @@ class TodoActionsStatic {
    */
   public destroyCompleted(): void {
     AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_DESTROY_COMPLETED
+      actionType: TodoActionID.TODO_DESTROY_COMPLETED
     });
   }
 }

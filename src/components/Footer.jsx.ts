@@ -15,7 +15,7 @@
 import React = require('react/addons');
 import ReactComponent = require('../react/ReactComponent');
 import ReactJSX = require('../react/ReactJSX');
-import TodoActions = require('../actions/TodoActions');
+import TodoActions = require('../flux/actions/TodoActions');
 
 var ReactPropTypes: React.ReactPropTypes = React.PropTypes;
 

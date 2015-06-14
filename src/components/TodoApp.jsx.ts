@@ -20,7 +20,7 @@ import Footer = require('./Footer.jsx');
 import Header = require('./Header.jsx');
 import MainSection = require('./MainSection.jsx');
 import React = require('react/addons');
-import TodoStore = require('../stores/TodoStore');
+import TodoStore = require('../flux/stores/TodoStore');
 import ReactComponent = require('../react/ReactComponent');
 import ReactJSX = require('../react/ReactJSX');
 

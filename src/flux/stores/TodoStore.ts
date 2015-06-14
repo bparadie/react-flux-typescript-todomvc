@@ -13,13 +13,13 @@
  *
  */
 
-///<reference path='../../typings/eventemitter3/eventemitter3.d.ts'/>
-///<reference path='../../typings/todomvc/todomvc.d.ts'/>
-///<reference path='../../typings/object-assign/object-assign.d.ts'/>
-///<reference path='../../typings/store/store.d.ts'/>
+///<reference path='../../../typings/eventemitter3/eventemitter3.d.ts'/>
+///<reference path='../../../typings/todomvc/todomvc.d.ts'/>
+///<reference path='../../../typings/object-assign/object-assign.d.ts'/>
+///<reference path='../../../typings/store/store.d.ts'/>
 
 import AppDispatcher = require('../dispatcher/AppDispatcher');
-import TodoConstants = require('../constants/TodoConstants');
+import TodoActionID = require('../actions/TodoActionID');
 import assign = require('object-assign');
 import EventEmitter = require('eventemitter3');
 import store = require('store');
@@ -165,7 +165,7 @@ AppDispatcher.register( function(action:TodoAction): void {
   var text: string;
 
   switch(action.actionType) {
-    case TodoConstants.TODO_CREATE:
+    case TodoActionID.TODO_CREATE:
       text = action.text.trim();
       if (text !== '') {
 	     create(text);
@@ -173,7 +173,7 @@ AppDispatcher.register( function(action:TodoAction): void {
       TodoStore.emitChange();
       break;
 
-    case TodoConstants.TODO_TOGGLE_COMPLETE_ALL:
+    case TodoActionID.TODO_TOGGLE_COMPLETE_ALL:
       if (TodoStore.areAllComplete()) {
 	     updateAll({complete: false});
       } else {
@@ -182,17 +182,17 @@ AppDispatcher.register( function(action:TodoAction): void {
       TodoStore.emitChange();
       break;
 
-    case TodoConstants.TODO_UNDO_COMPLETE:
+    case TodoActionID.TODO_UNDO_COMPLETE:
       update(action.id, {complete: false});
       TodoStore.emitChange();
       break;
 
-    case TodoConstants.TODO_COMPLETE:
+    case TodoActionID.TODO_COMPLETE:
       update(action.id, {complete: true});
       TodoStore.emitChange();
       break;
 
-    case TodoConstants.TODO_UPDATE_TEXT:
+    case TodoActionID.TODO_UPDATE_TEXT:
       text = action.text.trim();
       if (text !== '') {
 	     update(action.id, {text: text});
@@ -200,12 +200,12 @@ AppDispatcher.register( function(action:TodoAction): void {
       TodoStore.emitChange();
       break;
 
-    case TodoConstants.TODO_DESTROY:
+    case TodoActionID.TODO_DESTROY:
       destroy(action.id);
       TodoStore.emitChange();
       break;
 
-    case TodoConstants.TODO_DESTROY_COMPLETED:
+    case TodoActionID.TODO_DESTROY_COMPLETED:
       destroyCompleted();
       TodoStore.emitChange();
       break;

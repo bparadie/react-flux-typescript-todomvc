@@ -14,7 +14,7 @@
 ///<reference path='../../typings/react-jsx/react-jsx.d.ts'/>
 
 import React = require('react/addons');
-import TodoActions = require('../actions/TodoActions');
+import TodoActions = require('../flux/actions/TodoActions');
 import TodoTextInput = require('./TodoTextInput.jsx');
 import ReactComponent = require('../react/ReactComponent');
 import ReactJSX = require('../react/ReactJSX');
