@@ -9,12 +9,17 @@
  * Typescript port by Bernd Paradies, May 2015
  */
  
-declare module 'react-tools' {
+///<reference path='../react/react.d.ts'/>
 
-  interface TransformOptions
-  {
-    harmony?: boolean;
-  }
-
-  function transform(jsx: string, options: TransformOptions): string;
+declare module 'react/lib/cx' {
+  function cs(json:any): string;
+  export = cs;
 }
+
+declare module "react" {
+  function createElement<P>(
+    type: ReactChild,
+    props?: P,
+    children?: ReactChild[]): ReactElement<P>; 
+}
+    
