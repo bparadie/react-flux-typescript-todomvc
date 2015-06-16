@@ -17,7 +17,7 @@ import React = require('react/addons');
 import TodoActions = require('../flux/actions/TodoActions');
 import TodoTextInput = require('./TodoTextInput.jsx');
 import ReactComponent = require('../react/ReactComponent');
-import ReactJSX = require('../react/ReactJSX');
+import ReactJSON = require('../react/ReactJSON');
 import cx = require('react/lib/cx');
 
 var ReactPropTypes = React.PropTypes;
@@ -78,10 +78,10 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
    */
   public render(): React.ReactElement<TodoItemElement> {
     var todo = this.props.todo;
-    // this.state = this.state || this.getInitialState();
 
     var input: React.ReactElement<TodoTextInputElement>;
     if (this.state.isEditing) {
+      /*
       input = ReactJSX<TodoTextInputElement>(`
 	     <TodoTextInput
 	       className='edit'
@@ -93,6 +93,15 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
 	       TodoTextInput: TodoTextInput,
 	       todo: todo
 	     });
+      */ 
+      input = ReactJSON.createElement({
+        TodoTextInput: {
+          component: TodoTextInput,
+          className: 'edit',
+	        onSave: this._onSave,
+	        value: todo.text
+        }
+      }); 
     }
 
     // List items should get the class 'editing' when editing
@@ -100,6 +109,7 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
     // Note that 'completed' is a classification while 'complete' is a state.
     // This differentiation between classification and state becomes important
     // in the naming of view actions toggleComplete() vs. destroyCompleted().
+        /*
     return ReactJSX<TodoItemElement>(`
       <li
 				className={cx({
@@ -108,16 +118,16 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
 				})}
 				key={todo.id}>
 				<div className='view'>
-				<input
-						className='toggle'
-				    type='checkbox'
-						checked={todo.complete}
-				    onChange={this._onToggleComplete}
-				/>
-				<label onDoubleClick={this._onDoubleClick}>
-					{todo.text}
-				</label>
-				<button className='destroy' onClick={this._onDestroyClick} />
+  				<input
+  						className='toggle'
+  				    type='checkbox'
+  						checked={todo.complete}
+  				    onChange={this._onToggleComplete}
+  				/>
+  				<label onDoubleClick={this._onDoubleClick}>
+  					{todo.text}
+  				</label>
+  				<button className='destroy' onClick={this._onDestroyClick} />
 				</div>
 				{input}
       </li>
@@ -128,6 +138,37 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
       'cx': cx,
       'input': input
     });
+        */
+
+    var spec = {
+      li: {
+        className: cx({
+					'completed': todo.complete,
+					'editing': this.state.isEditing
+				}),
+        key: todo.id,
+        div: {
+          className: 'view',
+          input: {
+            className: 'toggle',
+  				  type: 'checkbox',
+  				  checked: todo.complete,
+  				  onChange: this._onToggleComplete
+          },
+          label: {
+            onDoubleClick: this._onDoubleClick,
+            textContent: todo.text
+          },
+          button: {
+            className: 'destroy',
+            onClick: this._onDestroyClick
+          },
+        },
+        children: input
+      }
+    };
+
+    return ReactJSON.createElement(spec);    
   }
 
 

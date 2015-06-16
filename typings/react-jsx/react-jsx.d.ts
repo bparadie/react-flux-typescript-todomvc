@@ -12,3 +12,12 @@ declare module 'react/lib/cx' {
   function cs(json:any): string;
   export = cs;
 }
+
+declare module "react" {
+  function createElement<P>(
+    type: ReactChild,
+    props?: P,
+    children?: ReactChild[]): ReactElement<P>;
+  
+}
+    

@@ -15,7 +15,7 @@ import React = require('react/addons');
 import TodoActions = require('../flux/actions/TodoActions');
 import TodoTextInput = require('./TodoTextInput.jsx');
 import ReactComponent = require('../react/ReactComponent');
-import ReactJSX = require('../react/ReactJSX');
+import ReactJSON = require('../react/ReactJSON');
 
 interface HeaderProps {
 }
@@ -43,6 +43,7 @@ class Header extends ReactComponent<HeaderProps,any> {
    * @return {object}
    */
   public render(): React.ReactElement<HeaderElement> {
+    /*
     return ReactJSX<HeaderElement>(`
       <header id='header'>
 		    <h1>todos</h1>
@@ -56,6 +57,20 @@ class Header extends ReactComponent<HeaderProps,any> {
       {
 	       'TodoTextInput': TodoTextInput
       });
+    */  
+    return ReactJSON.createElement({
+      header: {
+        id: 'header',
+        h1: 'todos',
+        TodoTextInput: 
+        {
+          component: TodoTextInput,
+          id: 'new-todo',
+		      placeholder: 'What needs to be done?',
+		      onSave: this._onSave
+        }
+      }
+    });  
   }
 };
 

@@ -15,7 +15,7 @@ import React = require('react/addons');
 import TodoActions = require('../flux/actions/TodoActions');
 import TodoItem = require('./TodoItem.jsx');
 import ReactComponent = require('../react/ReactComponent');
-import ReactJSX = require('../react/ReactJSX');
+import ReactJSON = require('../react/ReactJSON');
 
 var ReactPropTypes: React.ReactPropTypes = React.PropTypes;
 
@@ -58,6 +58,7 @@ class MainSection extends ReactComponent<TodoState,any> {
     for (key in allTodos) {
       if( allTodos.hasOwnProperty(key) )
       {
+        /*
 	       todos.push(
 			     ReactJSX<TodoItemProps>(`<TodoItem key={key} todo={allTodos[key]} />`,
 						 this,
@@ -67,9 +68,21 @@ class MainSection extends ReactComponent<TodoState,any> {
 						  key: key
 						 })
 	       );
+        */
+        todos.push(
+          ReactJSON.createElement({
+            TodoItem: {
+              component: TodoItem,
+              key: key,
+              todo: allTodos[key]
+            }
+          })
+        );  
       }
     }
 
+
+    /*
     return ReactJSX<MainSectionElement>(`
       <section id='main'>
 	     <input
@@ -85,6 +98,29 @@ class MainSection extends ReactComponent<TodoState,any> {
       {
 	     'todos': todos
       });
+    */  
+
+     return ReactJSON.createElement({
+        section: {          
+          id: 'main',
+          todos: todos,
+          input: {
+            id: 'toggle-all',
+            type: 'checkbox',
+	          onChange: this._onToggleCompleteAll,
+	          checked: this.props.areAllComplete ? 'checked' : ''
+          },
+          label: {
+            htmlFor: 'toggle-all',
+            textContent: 'Mark all as complete'
+          },
+          ul: {
+            id: 'todo-list',
+            children: todos
+          }
+        }
+      });
+
   }
 };
 
