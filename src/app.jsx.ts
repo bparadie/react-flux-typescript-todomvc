@@ -14,12 +14,14 @@
 ///<reference path='../typings/tsd.d.ts'/>
 
 import React = require('react');
-import ReactJSX = require('./react/ReactJSX');
+import ReactFromJSON = require('./react/ReactFromJSON');
 import TodoApp = require('./components/TodoApp.jsx');
 
-React.render(
-  ReactJSX(`<TodoApp />`, this, {
-    'TodoApp': TodoApp
-  }),
-  document.getElementById('todoapp')
-);
+// React.render((React.createElement(TodoApp, null)), document.getElementById('todoapp'));
+// React.render(React.createElement(TodoApp), document.getElementById('todoapp'));
+
+var app = ReactFromJSON.createElement({
+    TodoApp: { component: TodoApp }
+});
+
+React.render( app, document.getElementById('todoapp') );

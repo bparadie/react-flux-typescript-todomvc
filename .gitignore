@@ -6,7 +6,7 @@ node_modules/
 /typings/*
 !/typings/tsd.d.ts
 !/typings/todomvc/todomvc.d.ts
-!/typings/react-jsx/react-jsx.d.ts
+!/typings/react-from-json/react-from-json.d.ts
 !/typings/react-tools/react-tools.d.ts
 !/typings/store/store.d.ts
 

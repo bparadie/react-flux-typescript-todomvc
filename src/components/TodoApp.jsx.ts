@@ -22,7 +22,7 @@ import MainSection = require('./MainSection.jsx');
 import React = require('react/addons');
 import TodoStore = require('../flux/stores/TodoStore');
 import ReactComponent = require('../react/ReactComponent');
-import ReactJSON = require('../react/ReactJSON');
+import ReactFromJSON = require('../react/ReactFromJSON');
 
 interface TodoAppProps {
 }
@@ -68,26 +68,6 @@ class TodoApp extends ReactComponent<TodoAppProps,TodoState> {
    * @return {object}
    */
   public render(): React.ReactElement<TodoAppElement> {
-    // this.state = this.state || this.getInitialState();
-
-    /*
-  	return ReactJSX<TodoAppElement>(`
-      <div>
-        <Header />
-        <MainSection
-  	       allTodos={this.state.allTodos}
-  	       areAllComplete={this.state.areAllComplete}
-        />
-        <Footer allTodos={this.state.allTodos} />
-        </div>
-      `,
-      this,
-      {
-        'Header': Header,
-        'MainSection': MainSection,
-        'Footer': Footer
-      });
-    */  
     
     var spec = {
       div: {
@@ -103,7 +83,7 @@ class TodoApp extends ReactComponent<TodoAppProps,TodoState> {
         }
       }
     };
-    return ReactJSON.createElement(spec); 
+    return ReactFromJSON.createElement(spec); 
   }
 };
 

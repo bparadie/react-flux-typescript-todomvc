@@ -136,14 +136,9 @@ gulp.task('minify', function() {
       // [OPTIONAL] Set Closure Compiler Directives here
       compilerFlags: {
 	// closure_entry_point: 'App.main',
-	compilation_level: 'ADVANCED_OPTIMIZATIONS',
+  compilation_level: 'SIMPLE_OPTIMIZATIONS',
 	define: [
 	  // 'goog.DEBUG=false'
-	],
-	externs: [
-	  'externs/browserify.js',
-	  'externs/react.js',
-	  'externs/todomvc.js'
 	],
 	jscomp_off: [
 	  'checkTypes',

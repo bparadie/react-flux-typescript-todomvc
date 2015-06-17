@@ -15,7 +15,7 @@ import React = require('react/addons');
 import TodoActions = require('../flux/actions/TodoActions');
 import TodoItem = require('./TodoItem.jsx');
 import ReactComponent = require('../react/ReactComponent');
-import ReactJSON = require('../react/ReactJSON');
+import ReactFromJSON = require('../react/ReactFromJSON');
 
 var ReactPropTypes: React.ReactPropTypes = React.PropTypes;
 
@@ -58,19 +58,8 @@ class MainSection extends ReactComponent<TodoState,any> {
     for (key in allTodos) {
       if( allTodos.hasOwnProperty(key) )
       {
-        /*
-	       todos.push(
-			     ReactJSX<TodoItemProps>(`<TodoItem key={key} todo={allTodos[key]} />`,
-						 this,
-						 {
-						  TodoItem: TodoItem,
-						  allTodos: allTodos,
-						  key: key
-						 })
-	       );
-        */
         todos.push(
-          ReactJSON.createElement({
+          ReactFromJSON.createElement({
             TodoItem: {
               component: TodoItem,
               key: key,
@@ -81,46 +70,26 @@ class MainSection extends ReactComponent<TodoState,any> {
       }
     }
 
-
-    /*
-    return ReactJSX<MainSectionElement>(`
-      <section id='main'>
-	     <input
-	       id='toggle-all'
-	       type='checkbox'
-	       onChange={this._onToggleCompleteAll}
-	       checked={this.props.areAllComplete ? 'checked' : ''}
-	     />
-	     <label htmlFor='toggle-all'>Mark all as complete</label>
-	     <ul id='todo-list'>{todos}</ul>
-      </section>`,
-      this,
-      {
-	     'todos': todos
-      });
-    */  
-
-     return ReactJSON.createElement({
-        section: {          
-          id: 'main',
-          todos: todos,
-          input: {
-            id: 'toggle-all',
-            type: 'checkbox',
-	          onChange: this._onToggleCompleteAll,
-	          checked: this.props.areAllComplete ? 'checked' : ''
-          },
-          label: {
-            htmlFor: 'toggle-all',
-            textContent: 'Mark all as complete'
-          },
-          ul: {
-            id: 'todo-list',
-            children: todos
-          }
+   return ReactFromJSON.createElement({
+      section: {          
+        id: 'main',
+        todos: todos,
+        input: {
+          id: 'toggle-all',
+          type: 'checkbox',
+          onChange: this._onToggleCompleteAll,
+          checked: this.props.areAllComplete ? 'checked' : ''
+        },
+        label: {
+          htmlFor: 'toggle-all',
+          textContent: 'Mark all as complete'
+        },
+        ul: {
+          id: 'todo-list',
+          children: todos
         }
-      });
-
+      }
+    });
   }
 };
 

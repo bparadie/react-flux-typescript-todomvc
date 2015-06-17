@@ -13,7 +13,7 @@
 
 import React = require('react/addons');
 import ReactComponent = require('../react/ReactComponent');
-import ReactJSON = require('../react/ReactJSON');
+import ReactFromJSON = require('../react/ReactFromJSON');
 
 var ReactPropTypes = React.PropTypes;
 var ENTER_KEY_CODE = 13;
@@ -97,23 +97,8 @@ class TodoTextInput extends ReactComponent<any,TodoTextInputState> {
    * @return {object}
    */
   public render(): React.ReactElement<TodoTextInputElement> {
-    // this.state = this.state || this.getInitialState();
-    /*
-    return ReactJSX<TodoTextInputElement>(`
-      <input
-				className={this.props.className}
-				id={this.props.id}
-				placeholder={this.props.placeholder}
-				onBlur={this._save}
-				onChange={this._onChange}
-				onKeyDown={this._onKeyDown}
-				value={this.state.value}
-				autoFocus={true}
-      />
-    `,
-    this);
-    */
-    return ReactJSON.createElement({
+        
+    return ReactFromJSON.createElement({
       input: {
         className: this.props.className,
         id: this.props.id,

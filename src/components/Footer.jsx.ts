@@ -15,7 +15,7 @@
 import React = require('react/addons');
 import ReactComponent = require('../react/ReactComponent');
 import TodoActions = require('../flux/actions/TodoActions');
-import ReactJSON = require('../react/ReactJSON');
+import ReactFromJSON = require('../react/ReactFromJSON');
 
 var ReactPropTypes: React.ReactPropTypes = React.PropTypes;
 
@@ -75,22 +75,8 @@ class Footer extends ReactComponent<FooterProps,any> {
 
     // Undefined and thus not rendered if no completed items are left.
     if (completed) {
-      /*
-      clearCompletedButton =
-	     ReactJSX<ClearCompletedButton>(`
-				<button
-	       id='clear-completed'
-	       onClick={this._onClearCompletedClick}>
-	       Clear completed
-				</button>`,
-				this,
-				{
-					completed: completed
-				});
-        
-      */
-      
-      clearCompletedButton = ReactJSON.createElement({
+     
+      clearCompletedButton = ReactFromJSON.createElement({
         'button': {
           'id': 'clear-completed',
           'onClick': this._onClearCompletedClick,
@@ -99,26 +85,7 @@ class Footer extends ReactComponent<FooterProps,any> {
         }
       }); 
     }
-
-    /*
-    return ReactJSX<FooterElement>(`
-      <footer id='footer'>
-	     <span id='todo-count'>
-	       <strong>
-	       {itemsLeft}
-	       </strong>
-	       {itemsLeftPhrase}
-	     </span>
-	     {clearCompletedButton}
-      </footer>`,
-      this,
-      {
-	      'itemsLeft': itemsLeft,
-	      'itemsLeftPhrase': itemsLeftPhrase,
-	      'clearCompletedButton': clearCompletedButton
-      }
-    );
-    */
+        
     var tree = {
       footer: {
         id: 'footer',
@@ -131,7 +98,7 @@ class Footer extends ReactComponent<FooterProps,any> {
       }
     };
 
-    return ReactJSON.createElement(tree);
+    return ReactFromJSON.createElement(tree);
   }
 }
 

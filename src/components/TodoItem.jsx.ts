@@ -11,13 +11,13 @@
  *
  */
 
-///<reference path='../../typings/react-jsx/react-jsx.d.ts'/>
+///<reference path='../../typings/react-from-json/react-from-json.d.ts'/>
 
 import React = require('react/addons');
 import TodoActions = require('../flux/actions/TodoActions');
 import TodoTextInput = require('./TodoTextInput.jsx');
 import ReactComponent = require('../react/ReactComponent');
-import ReactJSON = require('../react/ReactJSON');
+import ReactFromJSON = require('../react/ReactFromJSON');
 import cx = require('react/lib/cx');
 
 var ReactPropTypes = React.PropTypes;
@@ -81,20 +81,8 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
 
     var input: React.ReactElement<TodoTextInputElement>;
     if (this.state.isEditing) {
-      /*
-      input = ReactJSX<TodoTextInputElement>(`
-	     <TodoTextInput
-	       className='edit'
-	       onSave={this._onSave}
-	       value={todo.text}
-	     />`,
-	     this,
-	     {
-	       TodoTextInput: TodoTextInput,
-	       todo: todo
-	     });
-      */ 
-      input = ReactJSON.createElement({
+
+      input = ReactFromJSON.createElement({
         TodoTextInput: {
           component: TodoTextInput,
           className: 'edit',
@@ -109,36 +97,6 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
     // Note that 'completed' is a classification while 'complete' is a state.
     // This differentiation between classification and state becomes important
     // in the naming of view actions toggleComplete() vs. destroyCompleted().
-        /*
-    return ReactJSX<TodoItemElement>(`
-      <li
-				className={cx({
-					'completed': todo.complete,
-					'editing': this.state.isEditing
-				})}
-				key={todo.id}>
-				<div className='view'>
-  				<input
-  						className='toggle'
-  				    type='checkbox'
-  						checked={todo.complete}
-  				    onChange={this._onToggleComplete}
-  				/>
-  				<label onDoubleClick={this._onDoubleClick}>
-  					{todo.text}
-  				</label>
-  				<button className='destroy' onClick={this._onDestroyClick} />
-				</div>
-				{input}
-      </li>
-    `,
-    this,
-    {
-      'todo': todo,
-      'cx': cx,
-      'input': input
-    });
-        */
 
     var spec = {
       li: {
@@ -162,13 +120,13 @@ class TodoItem extends ReactComponent<TodoItemProps,TodoItemState> {
           button: {
             className: 'destroy',
             onClick: this._onDestroyClick
-          },
+          }
         },
         children: input
       }
     };
 
-    return ReactJSON.createElement(spec);    
+    return ReactFromJSON.createElement(spec);    
   }
 
 
